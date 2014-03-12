@@ -1,5 +1,3 @@
-create or replace directory nf26pxxxSourceData as '/home/nf26/data';
-
 drop table nf26pxxx.f_bde_ventes;
 
 create table nf26pxxx.f_bde_ventes (
@@ -23,3 +21,7 @@ organization external (
     location ('Fantastic')
 )
 reject limit unlimited;
+
+select * from nf26pxxx.f_bde_ventes where rownum <= 10;
+
+select count(*) nf26pxxx.f_bde_ventes;
