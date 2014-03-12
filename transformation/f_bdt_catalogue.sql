@@ -19,7 +19,8 @@ drop table nf26pxxx.f_bdt_catalogue;
 create table nf26pxxx.f_bdt_catalogue of nf26pxxx.f_bdt_catalogue_type;
 
 drop index f_bdt_catalogue_isbn_idx;
-create unique index f_bdt_catalogue_isbn_idx on nf26pxxx.f_bdt_catalogue(isbn);
+create unique index f_bdt_catalogue_isbn_idx 
+    on nf26pxxx.f_bdt_catalogue(isbn);
 
 alter table nf26pxxx.f_bdt_catalogue drop constraint f_bdt_catalogue_pk_isbn;
 alter table nf26pxxx.f_bdt_catalogue add constraint f_bdt_catalogue_pk_isbn
