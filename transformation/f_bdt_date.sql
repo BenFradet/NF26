@@ -1,6 +1,6 @@
 create or replace type nf26pxxx.f_bdt_date_type as object (
     dat varchar(255),
-    member function getDate return date,
+    member function getDat return date,
     member function getMois return integer,
     member function getTrimestre return integer,
     member function getJourSemaine return varchar(10),
