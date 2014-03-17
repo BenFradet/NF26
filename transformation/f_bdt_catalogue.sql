@@ -1,4 +1,6 @@
-create or replace type nf26pxxx.f_bdt_catalogue_type as object (
+drop table nf26p008.f_bdt_catalogue;
+
+create or replace type nf26p008.f_bdt_catalogue_type as object (
     isbn varchar(13),
     titre varchar(255),
     auteur varchar(50),
@@ -13,15 +15,12 @@ create or replace type nf26pxxx.f_bdt_catalogue_type as object (
     member function getParution return char,
     member function getEditeur return varchar,
     member function getGenre return varchar
-)
+);
 
-drop table nf26pxxx.f_bdt_catalogue;
-create table nf26pxxx.f_bdt_catalogue of nf26pxxx.f_bdt_catalogue_type;
+create table nf26p008.f_bdt_catalogue of nf26p008.f_bdt_catalogue_type;
 
-drop index f_bdt_catalogue_isbn_idx;
 create unique index f_bdt_catalogue_isbn_idx 
-    on nf26pxxx.f_bdt_catalogue(isbn);
+    on nf26p008.f_bdt_catalogue(isbn);
 
-alter table nf26pxxx.f_bdt_catalogue drop constraint f_bdt_catalogue_pk_isbn;
-alter table nf26pxxx.f_bdt_catalogue add constraint f_bdt_catalogue_pk_isbn
+alter table nf26p008.f_bdt_catalogue add constraint f_bdt_catalogue_pk_isbn
     primary key (isbn);
