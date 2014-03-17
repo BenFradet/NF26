@@ -53,9 +53,10 @@ from nf26p008.f_bde_ventes ventes
 join f_bde_marketing market
 on market.magasin = ventes.magasin
 ;
+--peut etre sans join
 
 create unique index f_bdt_catalogue_idx_isbn on nf26p008.f_bdt_catalogue(isbn);
-create unique index f_bdt_date_idx_dat on nf26p008.f_bdt_date(date);
+create unique index f_bdt_date_idx_dat on nf26p008.f_bdt_date(dat);
 create unique index f_bdt_magasin_idx_num_mag 
     on nf26p008.f_bdt_magasin(num_mag);
 
@@ -65,6 +66,8 @@ alter table nf26p008.f_bdt_magasin enable constraint f_bdt_magasin_pk_num_mag;
 alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_dat;
 alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_produit;
 alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_magasin;
+--problemes avec les deux dernières ce qui est dans ventes
+--n'est pas dans les autres tables
 
 select * from nf26p008.f_bdt_ventes where rownum <= 10;
 select count(*) from nf26p008.f_bdt_ventes;
