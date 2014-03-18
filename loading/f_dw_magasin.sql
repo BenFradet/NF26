@@ -9,9 +9,7 @@ create table nf26p008.f_dw_magasin (
     rayonnage char(1)
 );
 
-drop index f_dw_magasin_idx_num_mag;
 create unique index f_dw_magasin_idx_num_mag on nf26p008.f_dw_magasin(num_mag);
 
-alter table nf26p008.f_dw_magasin drop constraint f_dw_magasin_pk_num_mag;
 alter table nf26p008.f_dw_magasin add constraint f_dw_magasin_pk_num_mag
     primary key(num_mag);

@@ -7,9 +7,7 @@ create table nf26p008.f_dw_date (
     trimestre number(1)
 );
 
-drop index f_dw_date_idx_dat;
 create unique index f_dw_date_idx_dat on nf26p008.f_dw_date(dat);
 
-alter table nf26p008.f_dw_date drop constraint f_dw_date_pk_dat;
 alter table nf26p008.f_dw_date add constraint f_dw_date_pk_dat
     primary key(dat);

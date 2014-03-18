@@ -9,9 +9,7 @@ create table nf26p008.f_dw_produit (
     parution char(4)
 );
 
-drop index f_dw_produit_idx_isbn;
 create unique index f_dw_produit_idx_isbn on nf26p008.f_dw_produit(isbn);
 
-alter table nf26p008.f_dw_produit drop constraint f_dw_produit_pk_isbn;
 alter table nf26p008.f_dw_produit add constraint f_dw_produit_pk_isbn
     primary key(isbn);
