@@ -8,7 +8,7 @@ create or replace type nf26p008.f_bdt_date_type as object (
     member function getJourSemaine return varchar,
     member function getSemaine return integer
 );
-
+/
 create table nf26p008.f_bdt_date of nf26p008.f_bdt_date_type;
 
 create unique index f_bdt_date_dat_idx on nf26p008.f_bdt_date(dat);

@@ -16,7 +16,7 @@ create or replace type nf26p008.f_bdt_catalogue_type as object (
     member function getEditeur return varchar,
     member function getGenre return varchar
 );
-
+/
 create table nf26p008.f_bdt_catalogue of nf26p008.f_bdt_catalogue_type;
 
 create unique index f_bdt_catalogue_isbn_idx 

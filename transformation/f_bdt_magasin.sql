@@ -18,7 +18,7 @@ create or replace type nf26p008.f_bdt_magasin_type as object (
     member function getRayonnage return char,
     member function getRayonnageExt return varchar
 );
-
+/
 create table nf26p008.f_bdt_magasin of nf26p008.f_bdt_magasin_type;
 
 create unique index f_bdt_magasin_num_mag_idx 
