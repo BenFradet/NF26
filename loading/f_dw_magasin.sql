@@ -6,7 +6,7 @@ create table nf26p008.f_dw_magasin (
     dpt char(2),
     dpt_nom varchar(50),
     dpt_pop number(2),
-    rayonnage char(1)
+    rayonnage varchar(10)
 );
 
 create unique index f_dw_magasin_idx_num_mag on nf26p008.f_dw_magasin(num_mag);
