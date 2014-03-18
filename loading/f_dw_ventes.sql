@@ -1,9 +1,8 @@
 drop table nf26p008.f_dw_ventes;
-
 create table nf26p008.f_dw_ventes (
     magasin char(4),
     dat date,
-    produit char(13)
+    produit varchar(13)
 );
 
 alter table nf26p008.f_dw_ventes add constraint f_dw_ventes_fk_magasin
