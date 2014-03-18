@@ -1,6 +1,4 @@
-alter table nf26p008.f_bdt_ventes disable constraint f_bdt_ventes_fk_magasin;
 alter table nf26p008.f_bdt_ventes disable constraint f_bdt_ventes_fk_dat;
-alter table nf26p008.f_bdt_ventes disable constraint f_bdt_ventes_fk_produit;
 alter table nf26p008.f_bdt_catalogue disable constraint f_bdt_catalogue_pk_isbn;
 alter table nf26p008.f_bdt_date disable constraint f_bdt_date_pk_dat;
 alter table nf26p008.f_bdt_magasin disable constraint f_bdt_magasin_pk_num_mag;
@@ -45,15 +43,11 @@ insert into nf26p008.f_bdt_ventes (
     ticket
 )
 select
-    market.magasin,
-    ventes.isbn,
-    ventes.dateAchat,
-    ventes.ticketnumber
-from nf26p008.f_bde_ventes ventes
-join f_bde_marketing market
-on market.magasin = ventes.magasin
-;
---peut etre sans join
+    magasin,
+    isbn,
+    dateAchat,
+    ticketnumber
+from nf26p008.f_bde_ventes ventes;
 
 create unique index f_bdt_catalogue_idx_isbn on nf26p008.f_bdt_catalogue(isbn);
 create unique index f_bdt_date_idx_dat on nf26p008.f_bdt_date(dat);
@@ -64,10 +58,6 @@ alter table nf26p008.f_bdt_catalogue enable constraint f_bdt_catalogue_pk_isbn;
 alter table nf26p008.f_bdt_date enable constraint f_bdt_date_pk_dat;
 alter table nf26p008.f_bdt_magasin enable constraint f_bdt_magasin_pk_num_mag;
 alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_dat;
-alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_produit;
-alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_magasin;
---problemes avec les deux dernières ce qui est dans ventes
---n'est pas dans les autres tables
 
 select * from nf26p008.f_bdt_ventes where rownum <= 10;
 select count(*) from nf26p008.f_bdt_ventes;

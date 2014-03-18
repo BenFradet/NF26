@@ -1,5 +1,5 @@
-drop table nf26pxxx.f_dw_magasin;
-create table nf26pxxx.f_dw_magasin (
+drop table nf26p008.f_dw_magasin;
+create table nf26p008.f_dw_magasin (
     num_mag char(4),
     rayon_bs char(1),
     rayon_r char(1),
@@ -10,8 +10,8 @@ create table nf26pxxx.f_dw_magasin (
 );
 
 drop index f_dw_magasin_idx_num_mag;
-create unique index f_dw_magasin_idx_num_mag on nf26pxxx.f_dw_magasin(num_mag);
+create unique index f_dw_magasin_idx_num_mag on nf26p008.f_dw_magasin(num_mag);
 
-alter table nf26pxxx.f_dw_magasin drop constraint f_dw_magasin_pk_num_mag;
-alter table nf26pxxx.f_dw_magasin add constraint f_dw_magasin_pk_num_mag
+alter table nf26p008.f_dw_magasin drop constraint f_dw_magasin_pk_num_mag;
+alter table nf26p008.f_dw_magasin add constraint f_dw_magasin_pk_num_mag
     primary key(num_mag);
