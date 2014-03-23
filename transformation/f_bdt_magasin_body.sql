@@ -12,7 +12,7 @@ is
         return rayon_bs;
     end;
 
-    member function getRayonRecent return vchar
+    member function getRayonRecent return char
     is
     begin
         return rayon_r;
