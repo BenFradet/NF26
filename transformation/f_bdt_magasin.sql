@@ -1,4 +1,6 @@
-create or replace type nf26pxxx.f_bdt_magasin_type as object (
+drop table nf26p008.f_bdt_magasin;
+
+create or replace type nf26p008.f_bdt_magasin_type as object (
     num_mag varchar(4),
     rayon_bs char(1),
     rayon_r char(1),
@@ -16,14 +18,11 @@ create or replace type nf26pxxx.f_bdt_magasin_type as object (
     member function getRayonnage return char,
     member function getRayonnageExt return varchar
 );
+/
+create table nf26p008.f_bdt_magasin of nf26p008.f_bdt_magasin_type;
 
-drop table nf26pxxx.f_bdt_magasin;
-create table nf26pxxx.f_bdt_magasin of nf26pxxx.f_bdt_magasin_type;
-
-drop index f_bdt_magasin_num_mag_idx;
 create unique index f_bdt_magasin_num_mag_idx 
-    on nf26pxxx.f_bdt_magasin(num_mag);
+    on nf26p008.f_bdt_magasin(num_mag);
 
-alter table nf26pxxx.f_bdt_magasin drop constraint f_bdt_magasin_pk_num_mag;
-alter table nf26pxxx.f_bdt_magasin add constraint f_bdt_magasin_pk_num_mag
+alter table nf26p008.f_bdt_magasin add constraint f_bdt_magasin_pk_num_mag
     primary key(num_mag);
