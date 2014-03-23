@@ -3,7 +3,11 @@ is
     member function getDat return date
     is
     begin
-        return to_date(dat, 'yyyy-mm-dd');
+        if regexp_like(dat, '[0-9]{4}-[0-9]{2}-[0-9]{2}') then
+            return to_date(dat, 'yyyy-mm-dd');
+        else
+            return null;
+        end if;
     end;
 
     member function getJourSemaine return varchar
