@@ -17,7 +17,8 @@ organization external (
         fields terminated by ';'
     )
     location ('departementsInsee2003.txt')
-);
+)
+reject limit 1;
 
 select * from nf26pxxx.f_bde_departement where rownum <= 10;
 

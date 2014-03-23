@@ -20,7 +20,8 @@ organization external (
         fields terminated by ';'
     )
     location ('marketing.csv')
-);
+)
+reject limit 1;
 
 select * from nf26pxxx.f_bde_marketing where rownum <= 10;
 

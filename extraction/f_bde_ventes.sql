@@ -20,7 +20,7 @@ organization external (
     )
     location ('Fantastic')
 )
-reject limit unlimited;
+reject limit 1;
 
 select * from nf26pxxx.f_bde_ventes where rownum <= 10;
 
