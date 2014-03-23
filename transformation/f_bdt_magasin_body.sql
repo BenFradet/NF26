@@ -1,4 +1,4 @@
-create or replace type body nf26p062.f_bdt_magasin_type
+create or replace type body nf26p008.f_bdt_magasin_type
 is
     member function getNumMag retun varchar
     is

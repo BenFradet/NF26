@@ -1,6 +1,6 @@
-drop table nf26pxxx.f_bde_ventes;
+drop table nf26p008.f_bde_ventes;
 
-create table nf26pxxx.f_bde_ventes (
+create table nf26p008.f_bde_ventes (
     ticketNumber varchar(255),
     dateAchat varchar(255),
     isbn varchar(255),
@@ -8,13 +8,13 @@ create table nf26pxxx.f_bde_ventes (
 )
 organization external (
     type oracle_loader
-    default directory nf26pxxxSourceData
+    default directory nf26p008SourceData
     access parameters (
         records delimited by newline
         skip 0
         characterset UTF8
-        badfile nf26pxxxTmp:'importVentes.bad'
-        logfile nf26pxxxTmp:'importVentes.log'
+        badfile nf26p008Tmp:'importVentes.bad'
+        logfile nf26p008Tmp:'importVentes.log'
         fields terminated by ';'
         optionally enclosed by '"'
     )
@@ -22,6 +22,6 @@ organization external (
 )
 reject limit 1;
 
-select * from nf26pxxx.f_bde_ventes where rownum <= 10;
+select * from nf26p008.f_bde_ventes where rownum <= 10;
 
-select count(*) nf26pxxx.f_bde_ventes;
+select count(*) nf26p008.f_bde_ventes;

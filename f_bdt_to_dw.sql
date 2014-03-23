@@ -1,7 +1,7 @@
 --desactivation des contraintes et index dans f_dw_*
 
 
-insert into nf26pxxx.f_dw_ventes (
+insert into nf26p008.f_dw_ventes (
     magasin,
     dat,
     produit
@@ -11,10 +11,10 @@ values (
         v.getMagasin(),
         v.getDat(),
         v.getProduit()
-    from nf26pxxx.f_bdt_ventes as v
+    from nf26p008.f_bdt_ventes as v
 );
 
-insert into nf26pxxx.f_dw_magasin (
+insert into nf26p008.f_dw_magasin (
     num_mag,
     rayon_bs,
     rayon_r,
@@ -32,10 +32,10 @@ values (
         m.getDptNom(),
         m.getDptPop(),
         m.getRayonnage()
-    from nf26pxxx.f_bdt_magasin as m
+    from nf26p008.f_bdt_magasin as m
 );
 
-insert into nf26pxxx.f_dw_produit (
+insert into nf26p008.f_dw_produit (
     isbn,
     titre,
     langue,
@@ -53,10 +53,10 @@ values (
         p.getAuteur(),
         p.getEditeur(),
         p.getParution()
-   from nf26pxxx.f_bdt_produit as p
+   from nf26p008.f_bdt_produit as p
 );
 
-insert into nf26pxxx.f_dw_date (
+insert into nf26p008.f_dw_date (
     dat,
     jour_semaine,
     mois,
@@ -70,7 +70,7 @@ values (
         d.getMois(),
         d.getSemaine(),
         d.getTrimestre()
-    from nf26pxxx.f_bdt_date as d
+    from nf26p008.f_bdt_date as d
 );
 
 --reenable constraints and indexes

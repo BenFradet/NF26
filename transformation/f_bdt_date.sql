@@ -10,8 +10,3 @@ create or replace type nf26p008.f_bdt_date_type as object (
 );
 /
 create table nf26p008.f_bdt_date of nf26p008.f_bdt_date_type;
-
-create unique index f_bdt_date_dat_idx on nf26p008.f_bdt_date(dat);
-
-alter table nf26p008.f_bdt_date add constraint f_bdt_date_pk_dat
-    primary key(dat);
