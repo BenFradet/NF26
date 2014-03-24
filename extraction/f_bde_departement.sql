@@ -1,5 +1,3 @@
-drop table nf26p008.f_bde_departement;
-
 create table nf26p008.f_bde_departement (
     dpt varchar(255),
     nom varchar(255),
