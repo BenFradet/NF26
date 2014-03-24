@@ -24,7 +24,7 @@ is
         return dpt;
     end;
 
-    member function getDptNom return char
+    member function getDptNom return varchar
     is
     begin
         return dpt_nom;
@@ -36,7 +36,7 @@ is
         return dpt_pop;
     end;
 
-    member function getRayonnage return varchar
+    member function getRayonnage return char
     is
     begin
         return rayonnage;
