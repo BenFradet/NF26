@@ -22,4 +22,4 @@ reject limit 1;
 
 select * from nf26p008.f_bde_ventes where rownum <= 10;
 
-select count(*) nf26p008.f_bde_ventes;
+select count(*) from nf26p008.f_bde_ventes;
