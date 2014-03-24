@@ -39,7 +39,7 @@ is
     member function getRayonnage return char
     is
     begin
-        return rayonnage;
+        return substr(rayonnage,1,1);
     end;
     member function getRayonnageExt return varchar
     is
