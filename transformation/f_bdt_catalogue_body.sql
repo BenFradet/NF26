@@ -1,6 +1,6 @@
 create or replace type body nf26p008.f_bdt_catalogue_type
 is
-    member function getIsbn retun varchar
+    member function getIsbn return varchar
     is
     begin
         return isbn;
