@@ -4,7 +4,7 @@ create or replace type nf26p008.f_bdt_magasin_type as object (
     rayon_r char(1),
     dpt char(2),
     dpt_nom varchar(50),
-    dpt_pop integer,
+    dpt_pop number,
     rayonnage varchar(10),
     rayonnage_ext varchar(10),
     member function getNumMag return varchar,
@@ -12,7 +12,7 @@ create or replace type nf26p008.f_bdt_magasin_type as object (
     member function getRayonRecent return char,
     member function getDpt return char,
     member function getDptNom return varchar,
-    member function getDptPop return integer,
+    member function getDptPop return number,
     member function getRayonnage return char,
     member function getRayonnageExt return varchar
 );
