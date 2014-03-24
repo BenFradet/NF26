@@ -16,14 +16,13 @@ insert into nf26p008.f_dw_ventes (
     produit,
     ticket
 )
-values (
-    select
-        v.getMagasin(),
-        v.getDat(),
-        v.getProduit(),
-        v.getTicket()
-    from nf26p008.f_bdt_ventes as v
-);
+select
+    v.getMagasin(),
+    v.getDat(),
+    v.getProduit(),
+    v.getTicket()
+from nf26p008.f_bdt_ventes as v
+;
 commit;
 
 insert into nf26p008.f_dw_magasin (
@@ -35,7 +34,6 @@ insert into nf26p008.f_dw_magasin (
     dpt_pop,
     rayonnage
 )
-values (
     select
         m.getNumMag(),
         m.getRayonBs(),
@@ -45,7 +43,7 @@ values (
         m.getDptPop(),
         m.getRayonnage()
     from nf26p008.f_bdt_magasin as m
-);
+;
 commit;
 
 insert into nf26p008.f_dw_produit (
@@ -57,7 +55,6 @@ insert into nf26p008.f_dw_produit (
     editeur,
     parution
 )
-values (
     select
         p.getIsbn(),
         p.getTitre(),
@@ -67,7 +64,7 @@ values (
         p.getEditeur(),
         p.getParution()
    from nf26p008.f_bdt_produit as p
-);
+;
 commit;
 
 insert into nf26p008.f_dw_date (
@@ -77,7 +74,6 @@ insert into nf26p008.f_dw_date (
     semaine,
     trimestre
 )
-values (
     select distinct
         d.getDat(),
         d.getJourSemaine(),
@@ -85,7 +81,7 @@ values (
         d.getSemaine(),
         d.getTrimestre()
     from nf26p008.f_bdt_date as d
-);
+;
 commit;
 
 create unique index f_dw_produit_idx_isbn on nf26p008.f_dw_produit(isbn);
