@@ -1,6 +1,6 @@
-alter table nf26p008.f_bdt_ventes disable constraint f_bdt_ventes_fk_dat;
 alter table nf26p008.f_bdt_catalogue disable constraint f_bdt_catalogue_pk_isbn;
 alter table nf26p008.f_bdt_magasin disable constraint f_bdt_magasin_pk_num_mag;
+alter table nf26p008.f_bdt_ventes disable constraint f_bdt_ventes_fk_magasin;
 
 drop index f_bdt_catalogue_isbn_idx;
 drop index f_bdt_magasin_num_mag_idx;
@@ -58,7 +58,7 @@ alter table nf26p008.f_bdt_catalogue enable constraint f_bdt_catalogue_pk_isbn
     exceptions into nf26p008.exceptions;
 alter table nf26p008.f_bdt_magasin enable constraint f_bdt_magasin_pk_num_mag
     exceptions into nf26p008.exceptions;
-alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_dat
+alter table nf26p008.f_bdt_ventes enable constraint f_bdt_ventes_fk_magasin
     exceptions into nf26p008.exceptions;
 
 select count(*) from nf26p008.exceptions;
