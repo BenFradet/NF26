@@ -1,4 +1,4 @@
-drop table nf26p008.f_dw_magasin;
+
 create table nf26p008.f_dw_magasin (
     num_mag char(4),
     rayon_bs char(1),
