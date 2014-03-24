@@ -16,13 +16,13 @@ is
         return to_char(self.getDat(), 'fmday');
     end;
 
-    member function getSemaine return integer
+    member function getSemaine return number
     is
     begin
         return to_char(self.getDat(), 'ww');
     end;
 
-    member function getMois return integer
+    member function getMois return number
     is
     begin
         return to_char(self.getDat(), 'mm');
