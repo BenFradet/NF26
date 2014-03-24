@@ -10,15 +10,15 @@ prompt ==========EXCEPTIONS==========
 
 prompt
 prompt ==========BDE==========
-@f_bde.sql
+@extraction/f_bde.sql
 
 prompt
 prompt ==========BDT==========
-@f_bdt.sql
+@transformation/f_bdt.sql
 
 prompt
 prompt ==========DW==========
-@f_dw.sql
+@loading/f_dw.sql
 
 prompt
 prompt ==========BDE to BDT==========
