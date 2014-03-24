@@ -1,5 +1,3 @@
-drop table nf26p008.f_bdt_catalogue;
-
 create or replace type nf26p008.f_bdt_catalogue_type as object (
     isbn varchar(13),
     titre varchar(255),
