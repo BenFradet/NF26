@@ -33,7 +33,7 @@ is
     member function getDptPop return number
     is
     begin
-        return dpt_pop;
+        return floor(dpt_pop / 100000::float);
     end;
 
     member function getRayonnage return char
