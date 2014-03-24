@@ -1,5 +1,3 @@
-drop table nf26p008.f_bde_ventes;
-
 create table nf26p008.f_bde_ventes (
     ticketNumber varchar(255),
     dateAchat varchar(255),
