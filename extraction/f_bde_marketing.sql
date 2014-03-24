@@ -23,4 +23,4 @@ reject limit 1;
 
 select * from nf26p008.f_bde_marketing where rownum <= 10;
 
-select count(*), from nf26p008.f_bde_marketing;
+select count(*) from nf26p008.f_bde_marketing;
