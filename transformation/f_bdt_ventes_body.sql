@@ -1,6 +1,6 @@
 create or replace type body nf26p062.f_bdt_ventes_type
 is
-    member function getMagasin retun char
+    member function getMagasin return char
     is
     begin
 		IF SUBSTR(magasin,1,1)='M' and LENGTH(magasin) between 2 and 4 THEN
