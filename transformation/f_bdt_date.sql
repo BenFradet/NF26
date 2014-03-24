@@ -1,5 +1,3 @@
-drop table nf26p008.f_bdt_date;
-
 create or replace type nf26p008.f_bdt_date_type as object (
     dat varchar(255),
     member function getDat return date,
