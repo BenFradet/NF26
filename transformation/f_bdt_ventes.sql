@@ -3,7 +3,7 @@ create or replace type nf26p008.f_bdt_ventes_type as object (
     produit varchar(13),
     dat varchar(10),
     ticket varchar(50),
-    member function getMagasin return char,
+    member function getMagasin return varchar,
     member function getProduit return char,
     member function getDat return date,
     member function getTicket return varchar
