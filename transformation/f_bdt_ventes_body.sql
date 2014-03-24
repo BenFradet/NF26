@@ -1,25 +1,25 @@
 create or replace type body nf26p062.f_bdt_ventes_type
 is
-    member function getMagasin return char
+    member function getMagasin return varchar
     is
     begin
-		IF SUBSTR(magasin,1,1)='M' and LENGTH(magasin) between 2 and 4 THEN
+		if SUBSTR(magasin,1,1)='M' and LENGTH(magasin) between 2 and 4 then
 		  return magasin;
 			
-		ELSE return NULL;
+		else return null;
 		
-		END IF;
+		end if;
     end;
 
     member function getProduit return char
     is
     begin
-		IF LENGTH(produit)=13 THEN
+		if LENGTH(produit)=13 then
 			return produit;
 			
-		ELSE return NULL;
+		else return null;
 		
-		END IF;
+		end if;
     end;
 
     member function getDat return date
