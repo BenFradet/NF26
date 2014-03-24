@@ -81,6 +81,7 @@ insert into nf26p008.f_dw_date (
         d.getSemaine(),
         d.getTrimestre()
     from nf26p008.f_bdt_date d
+    where d.getDat() is not null
 ;
 commit;
 
