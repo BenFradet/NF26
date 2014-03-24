@@ -1,14 +1,14 @@
-drop index f_dw_date_idx_dat;
-drop index f_dw_magasin_idx_num_mag;
-drop index f_dw_produit_idx_isbn;
+alter table nf26p008.f_dw_ventes disable constraint f_dw_ventes_fk_magasin;
+alter table nf26p008.f_dw_ventes disable constraint f_dw_ventes_fk_produit;
+alter table nf26p008.f_dw_ventes disable constraint f_dw_ventes_fk_dat;
 
 alter table nf26p008.f_dw_date disable constraint f_dw_date_pk_dat;
 alter table nf26p008.f_dw_magasin disable constraint f_dw_magasin_pk_num_mag;
 alter table nf26p008.f_dw_produit disable constraint f_dw_produit_pk_isbn;
 
-alter table nf26p008.f_dw_ventes disable constraint f_dw_ventes_fk_magasin;
-alter table nf26p008.f_dw_ventes disable constraint f_dw_ventes_fk_produit;
-alter table nf26p008.f_dw_ventes disable constraint f_dw_ventes_fk_dat;
+drop index f_dw_date_idx_dat;
+drop index f_dw_magasin_idx_num_mag;
+drop index f_dw_produit_idx_isbn;
 
 insert into nf26p008.f_dw_ventes (
     magasin,
