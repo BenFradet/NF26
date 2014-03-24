@@ -1,6 +1,6 @@
 create or replace type body nf26p008.f_bdt_magasin_type
 is
-    member function getNumMag retun varchar
+    member function getNumMag return varchar
     is
     begin
         return num_mag;
