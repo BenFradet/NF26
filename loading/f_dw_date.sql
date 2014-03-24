@@ -1,4 +1,4 @@
-drop table nf26p008.f_dw_date;
+
 create table nf26p008.f_dw_date (
     dat date,
     jour_semaine varchar(10),
