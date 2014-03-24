@@ -13,13 +13,15 @@ drop index f_dw_produit_idx_isbn;
 insert into nf26p008.f_dw_ventes (
     magasin,
     dat,
-    produit
+    produit,
+    ticket
 )
 values (
     select
         v.getMagasin(),
         v.getDat(),
-        v.getProduit()
+        v.getProduit(),
+        v.getTicket()
     from nf26p008.f_bdt_ventes as v
 );
 commit;
