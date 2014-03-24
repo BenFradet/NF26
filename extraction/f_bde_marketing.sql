@@ -1,7 +1,7 @@
 create table nf26p008.f_bde_marketing (
     dpt varchar(255),
     magasin varchar(255),
-    rayonnage char(255),
+    rayonnage varchar(255),
     rayonnage_ext varchar(255),
     bestseller char(1),
     recent char(1)
