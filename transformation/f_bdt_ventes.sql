@@ -1,5 +1,3 @@
-drop table nf26p008.f_bdt_ventes;
-
 create or replace type nf26p008.f_bdt_ventes_type as object (
     magasin varchar(4),
     produit varchar(13),
