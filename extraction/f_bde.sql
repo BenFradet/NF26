@@ -1,5 +1,5 @@
-@f_bde_catalogue.sql
-@f_bde_dirs.sql
-@f_bde_departement.sql
-@f_bde_marketing.sql
-@f_bde_ventes.sql
+@extraction/f_bde_catalogue.sql
+@extraction/f_bde_dirs.sql
+@extraction/f_bde_departement.sql
+@extraction/f_bde_marketing.sql
+@extraction/f_bde_ventes.sql
