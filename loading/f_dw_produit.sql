@@ -1,4 +1,4 @@
-drop table nf26p008.f_dw_produit;
+
 create table nf26p008.f_dw_produit (
     isbn varchar(13),
     titre varchar(255),
