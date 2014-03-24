@@ -15,7 +15,7 @@ is
     is
     begin
 		if LENGTH(produit)=13 then
-			return produit;
+			return to_char(produit);
 			
 		else return null;
 		
