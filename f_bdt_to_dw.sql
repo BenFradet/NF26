@@ -63,7 +63,7 @@ insert into nf26p008.f_dw_produit (
         p.getAuteur(),
         p.getEditeur(),
         p.getParution()
-   from nf26p008.f_bdt_produit p
+   from nf26p008.f_bdt_catalogue p
 ;
 commit;
 
