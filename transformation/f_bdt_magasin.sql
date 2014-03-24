@@ -1,5 +1,3 @@
-drop table nf26p008.f_bdt_magasin;
-
 create or replace type nf26p008.f_bdt_magasin_type as object (
     num_mag varchar(4),
     rayon_bs char(1),
