@@ -1,4 +1,4 @@
-drop table nf26p008.f_dw_ventes;
+
 create table nf26p008.f_dw_ventes (
     magasin char(4),
     dat date,
