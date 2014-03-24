@@ -12,3 +12,11 @@ begin
     end loop;
 end;
 /
+begin
+  for c in
+      (select object_name from user_objects where object_type='VIEW') loop
+  execute immediate ('drop view nf26p008.' || c.object_name ||
+      ' cascade constraints');
+  end loop;
+end;
+/
