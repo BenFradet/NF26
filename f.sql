@@ -5,6 +5,10 @@ prompt ==========RAZ==========
 @f_raz.sql
 
 prompt
+prompt ==========EXCEPTIONS==========
+@f_exceptions.sql
+
+prompt
 prompt ==========BDE==========
 @f_bde.sql
 
