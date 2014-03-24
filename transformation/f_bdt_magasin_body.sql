@@ -30,7 +30,7 @@ is
         return dpt_nom;
     end;
 
-    member function getDptPop return varchar
+    member function getDptPop return number
     is
     begin
         return dpt_pop;
