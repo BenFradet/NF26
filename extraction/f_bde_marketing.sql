@@ -1,5 +1,3 @@
-drop table nf26p008.f_bde_marketing;
-
 create table nf26p008.f_bde_marketing (
     dpt varchar(255),
     magasin varchar(255),
