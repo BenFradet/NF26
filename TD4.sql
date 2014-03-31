@@ -61,3 +61,11 @@ from f_dw_magasin m
 group by m.rayonnage)
 where r1=r2
 order by ventes_mag desc;
+
+--question 5--
+create or replace view nf26p008.f_ventes_par_sem as
+select d.sem || ';' || count(*) as ventes_par_sem
+from nf26p008.f_dw_ventes v, f_dw_date d
+where v.dat = d.dat
+group by d.semaine
+order by d.semaine;
