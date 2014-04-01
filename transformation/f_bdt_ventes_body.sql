@@ -1,4 +1,4 @@
-create or replace type body nf26p062.f_bdt_ventes_type
+create or replace type body nf26p008.f_bdt_ventes_type
 is
     member function getMagasin return varchar
     is
