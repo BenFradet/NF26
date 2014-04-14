@@ -1,6 +1,6 @@
 create table nf26p008.d_bde_sectors (
     sector varchar(255),
-    surface integer,
+    surface integer
 )
 organization external (
     type oracle_loader
