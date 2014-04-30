@@ -33,10 +33,4 @@ is
     begin
         return card;
     end;
-
-    member function getSalePrice return number
-    is
-    begin
-        return sale_price;
-    end;
 end;

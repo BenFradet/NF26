@@ -1,4 +1,4 @@
-create or replace type body nf26p008.f_bdt_date_type
+create or replace type body nf26p008.d_bdt_date_type
 is
     member function getDate return date
     is

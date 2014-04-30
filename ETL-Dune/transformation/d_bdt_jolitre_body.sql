@@ -6,18 +6,6 @@ is
         return jolitre_id;
     end;
 
-    member function getColor return varchar
-    is
-    begin
-        return color;
-    end;
-
-    member function getPrice return number
-    is
-    begin
-        return price;
-    end;
-
     member function getQuality return varchar
     is
     begin
@@ -27,13 +15,7 @@ is
     member function getSize return number
     is
     begin
-        return size;
-    end;
-
-    member function getType return varchar
-    is
-    begin
-        return type;
+        return j_size;
     end;
 
     member function getCity return varchar

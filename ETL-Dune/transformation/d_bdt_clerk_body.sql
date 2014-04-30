@@ -6,44 +6,16 @@ is
         return clerk_id;
     end;
 
-    member function getName return varchar
-    is
-    begin
-        return name;
-    end;
-
     member function getExperience return number
     is
     begin
         return experience;
     end;
 
-    member function getGender return char
-    is
-    begin
-        return gender;
-    end;
-
     member function getStore return varchar
     is
     begin
         return store;
-    end;
-
-    member function getStoreDop return date
-    is
-    begin
-        if regexp_like(dat, '[0-9]{4}-[0-9]{2}-[0-9]{2}') then
-            return to_date(store_dop, 'yyyy-mm-dd');
-        else
-            return null;
-        end if;
-    end;
-
-    member function getStoreYop return number
-    is
-    begin
-        return to_number(self.getStoreDop(), 'YYYY');
     end;
 
     member function getStoreCity return varchar

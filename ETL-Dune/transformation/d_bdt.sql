@@ -1,0 +1,10 @@
+@d_bdt_card.sql
+@d_bdt_card_body.sql
+@d_bdt_clerk.sql
+@d_bdt_clerk_body.sql
+@d_bdt_date.sql
+@d_bdt_date_body.sql
+@d_bdt_jolitre.sql
+@d_bdt_jolitre_body.sql
+@d_bdt_ventes.sql
+@d_bdt_ventes_body.sql

@@ -6,18 +6,6 @@ is
         return card_id;
     end;
 
-    member function getFirstName return varchar
-    is
-    begin
-        return first_name;
-    end;
-
-    member function getYob return number
-    is
-    begin
-        return to_number(yob);
-    end;
-
     member function getCity return varchar
     is
     begin
@@ -40,12 +28,6 @@ is
     is
     begin
         return sector_surface;
-    end;
-
-    member function getGender return char
-    is
-    begin
-        return gender;
     end;
 
     member function getOccupation return varchar
@@ -72,10 +54,10 @@ is
         return house_stat;
     end;
 
-    member function getFremen return varchar
+    member function isFremen return varchar
     is
     begin
-        return fremen;
+        return 'N';
     end;
 
     member function isHighSpender return char
