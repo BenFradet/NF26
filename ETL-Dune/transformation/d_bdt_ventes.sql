@@ -8,7 +8,7 @@ create or replace type nf26p008.d_bdt_ventes_type as object (
     member function getDate return date,
     member function getJolitre return varchar,
     member function getClerk return number,
-    member function getCard return char
+    member function getCard return varchar
 );
 /
 create table nf26p008.d_bdt_ventes of nf26p008.d_bdt_ventes_type;

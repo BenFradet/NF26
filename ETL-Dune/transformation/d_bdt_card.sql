@@ -8,7 +8,7 @@ create or replace type nf26p008.d_bdt_card_type as object (
     occupation_stat number,
     house varchar(255),
     house_stat number,
-    member function getCardId return char,
+    member function getCardId return varchar,
     member function getCity return varchar,
     member function getCityPop return number,
     member function getSector return varchar,

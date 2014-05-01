@@ -40,9 +40,9 @@ is
         return to_char(self.getDate(), 'yyyy');
     end;
 
-    member function getTemperature return number
+    member function getTemperature return varchar
     is
     begin
-        return temperature;
+        return 'hot';
     end;
 end;

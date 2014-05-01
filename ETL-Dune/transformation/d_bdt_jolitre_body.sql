@@ -9,7 +9,7 @@ is
     member function getQuality return varchar
     is
     begin
-        return quality;
+        return 'good';
     end;
 
     member function getSize return number

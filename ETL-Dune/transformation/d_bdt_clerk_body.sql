@@ -6,10 +6,10 @@ is
         return clerk_id;
     end;
 
-    member function getExperience return number
+    member function getExperience return varchar
     is
     begin
-        return experience;
+        return 'experienced';
     end;
 
     member function getStore return varchar
