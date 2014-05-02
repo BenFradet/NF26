@@ -1,5 +1,22 @@
 create or replace type body nf26p008.d_bdt_date_type
 is
+    member function getId return number
+    is
+    begin
+        if self.getDate() is not null then
+            return id;
+        elsif length(self.dat) = 0 then
+            --no date
+            return -2;
+        elsif length(self.dat) <> 10 then
+            --truncated date
+            return -3;
+        else
+            --other
+            return -4;
+        end if;
+    end;
+
     member function getDate return date
     is
     begin
@@ -42,7 +59,63 @@ is
 
     member function getTemperature return varchar
     is
+        diff number;
+        minimum number;
+        maximum number;
+        temp number;
     begin
-        return 'hot';
+        if self.toNumber(self.temperature) is null then
+            return 'undefined';
+        else
+            minimum := self.minTemperature();
+            maximum := self.maxTemperature();
+            diff := maximum - minimum;
+            temp := self.toNumber(self.temperature);
+            if temp is null then
+                --should be useless
+                return 'undefined';
+            elsif temp < minimum + diff / 4 then
+                return 'cold';
+            elsif temp < minimum + diff / 2 then
+                return 'ratherCold';
+            elsif temp < minimum + 3 * diff / 4 then
+                return 'ratherHot';
+            else
+                return 'hot';
+            end if;
+        end if;
+    end;
+
+    member function maxTemperature return number
+    is
+        maximum number;
+    begin
+        select max(toNumber(temperature))
+        into maximum
+        from nf26p008.d_bdt_date;
+        return maximum;
+    end;
+
+    member function minTemperature return number
+    is
+        minimum number;
+    begin
+        select min(toNumber(temperature))
+        into minimum
+        from nf26p008.d_bdt_date;
+        return minimum;
+    end;
+
+    member function toNumber (str in varchar) return number
+    is
+        num number;
+    begin
+        begin
+            num := to_number(str);
+        exception
+        when others then
+            num := null;
+        end;
+        return num;
     end;
 end;

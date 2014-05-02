@@ -28,7 +28,7 @@ is
         return clerk;
     end;
 
-    member function getCard return char
+    member function getCard return varchar
     is
     begin
         return card;

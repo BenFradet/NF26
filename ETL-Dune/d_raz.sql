@@ -20,3 +20,10 @@ begin
   end loop;
 end;
 /
+begin
+    for c in 
+        (select object_name from user_objects where object_type='SEQUENCE') loop
+    execute immediate ('drop sequence nf26p008.' || c.object_name); 
+    end loop;
+end;
+/
