@@ -1,11 +1,5 @@
 create or replace type body nf26p008.d_bdt_card_type
 is
-    member function getId return number
-    is
-    begin
-        return id;
-    end;
-
     member function getCardId return varchar
     is
     begin

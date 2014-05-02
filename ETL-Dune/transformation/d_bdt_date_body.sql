@@ -1,22 +1,5 @@
 create or replace type body nf26p008.d_bdt_date_type
 is
-    member function getId return number
-    is
-    begin
-        if self.getDate() is not null then
-            return id;
-        elsif length(self.dat) = 0 then
-            --no date
-            return -2;
-        elsif length(self.dat) <> 10 then
-            --truncated date
-            return -3;
-        else
-            --other
-            return -4;
-        end if;
-    end;
-
     member function getDate return date
     is
     begin

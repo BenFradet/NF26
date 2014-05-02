@@ -1,11 +1,5 @@
 create or replace type body nf26p008.d_bdt_jolitre_type
 is
-    member function getId return number
-    is
-    begin
-        return id;
-    end;
-
     member function getJolitreId return varchar
     is
     begin
