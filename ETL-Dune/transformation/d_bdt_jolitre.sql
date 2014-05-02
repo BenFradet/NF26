@@ -7,9 +7,9 @@ create or replace type nf26p008.d_bdt_jolitre_type as object (
     sector varchar(255),
     sector_surface number,
     member function getJolitreId return varchar,
-    --segmentations
     member function getQuality return varchar,
-    --
+    member function minQuality return number,
+    member function maxQuality return number,
     member function getSize return number,
     member function getCity return varchar,
     member function getCityPop return number,
