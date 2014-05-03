@@ -8,14 +8,13 @@ create or replace type nf26p008.d_bdt_jolitre_type as object (
     sector_surface number,
     member function getJolitreId return varchar,
     member function getQuality return varchar,
-    member function minQuality return number,
-    member function maxQuality return number,
     member function getSize return number,
     member function getCity return varchar,
     member function getCityPop return number,
     member function getSector return varchar,
     member function getSectorSurface return number,
-    member function isBestSeller return char
+    member function isBestSeller return char,
+    member function hasDuplicates return boolean
 );
 /
 create table nf26p008.d_bdt_jolitre of nf26p008.d_bdt_jolitre_type;

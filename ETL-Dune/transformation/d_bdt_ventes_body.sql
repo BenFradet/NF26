@@ -25,12 +25,25 @@ is
     member function getClerk return number
     is
     begin
-        return clerk;
+        return toNumber(clerk);
     end;
 
     member function getCard return varchar
     is
     begin
         return card;
+    end;
+
+    member function toNumber (str in varchar) return number
+    is
+        num number;
+    begin
+        begin
+            num := to_number(str);
+        exception
+        when others then
+            num := null;
+        end;
+        return num;
     end;
 end;

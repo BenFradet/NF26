@@ -18,7 +18,8 @@ create or replace type nf26p008.d_bdt_card_type as object (
     member function getHouse return varchar,
     member function getHouseStat return number,
     member function isFremen return char,
-    member function isHighSpender return char
+    member function isHighSpender return char,
+    member function hasDuplicates return boolean
 );
 /
 create table nf26p008.d_bdt_card of nf26p008.d_bdt_card_type;

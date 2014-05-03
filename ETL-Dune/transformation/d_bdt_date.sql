@@ -8,8 +8,6 @@ create or replace type nf26p008.d_bdt_date_type as object (
     member function getMoy return number,
     member function getYear return number,
     member function getTemperature return varchar,
-    member function maxTemperature return number,
-    member function minTemperature return number,
     member function toNumber (str in varchar) return number
 );
 /
