@@ -40,27 +40,20 @@ is
         return to_char(self.getDate(), 'yyyy');
     end;
 
-    member function getTemperature return varchar
+    member function getTemperature (minimum in number, maximum in number) return varchar
     is
         diff number;
-        minimum number;
-        maximum number;
         temp number;
-        nb number;
     begin
-        select count(distinct temperature)
-        into nb
-        from nf26p008.d_bdt_date
-        where dat = self.dat;
         if self.toNumber(self.temperature) is null then
             return 'undefined';
-        elsif nb > 1 then
+        elsif self.hasDuplicates() then
             return 'undefined';
         else
-            minimum := 25;
-            maximum := 75;
             diff := maximum - minimum;
             temp := self.toNumber(self.temperature);
+            dbms_output.put_line(diff);
+            dbms_output.put_line(temp);
             if temp is null then
                 --should be useless
                 return 'undefined';
@@ -76,26 +69,6 @@ is
         end if;
     end;
 
-    --member function maxTemperature return number
-    --is
-    --    maximum number;
-    --begin
-    --    select max(self.toNumber(temperature))
-    --    into maximum
-    --    from nf26p008.d_bdt_date;
-    --    return maximum;
-    --end;
-
-    --member function minTemperature return number
-    --is
-    --    minimum number;
-    --begin
-    --    select min(self.toNumber(temperature))
-    --    into minimum
-    --    from nf26p008.d_bdt_date;
-    --    return minimum;
-    --end;
-
     member function toNumber (str in varchar) return number
     is
         num number;
@@ -107,5 +80,20 @@ is
             num := null;
         end;
         return num;
+    end;
+
+    member function hasDuplicates return boolean
+    is
+        nb number;
+    begin
+        select count(*)
+        into nb
+        from nf26p008.d_bdt_date d
+        where self.dat = d.dat;
+        if nb > 1 then
+            return true;
+        else
+            return false;
+        end if;
     end;
 end;

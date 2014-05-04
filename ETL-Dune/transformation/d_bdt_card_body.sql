@@ -8,13 +8,8 @@ is
 
     member function getCity return varchar
     is
-        nb number;
     begin
-        select count(distinct city)
-        into nb
-        from nf26p008.d_bdt_card
-        where card_id = self.card_id;
-        if nb > 1 then
+        if self.hasDuplicates() then
             return 'undefined';
         else
             return city;
@@ -23,23 +18,27 @@ is
 
     member function getCityPop return number
     is
+        nb number;
     begin
-        if self.getCity like 'undefined' then
+        if self.getCity() like 'undefined' then
             return null;
         else
-            return city_pop;
+            select count(distinct card.city_pop)
+            into nb
+            from nf26p008.d_bdt_card card
+            where card.city = self.city;
+            if nb > 1 then
+                return null;
+            else
+                return city_pop;
+            end if;
         end if;
     end;
 
     member function getSector return varchar
     is
-        nb number;
     begin
-        select count(distinct sector)
-        into nb
-        from nf26p008.d_bdt_card
-        where card_id = self.card_id;
-        if nb > 1 then
+        if self.hasDuplicates() then
             return 'undefined';
         else
             return sector;
@@ -48,23 +47,27 @@ is
 
     member function getSectorSurface return number
     is
+        nb number;
     begin
         if self.getSector() like 'undefined' then
             return null;
         else
-            return sector_surface;
+            select count(distinct card.sector_surface)
+            into nb
+            from nf26p008.d_bdt_card card
+            where card.sector = self.sector;
+            if nb > 1 then
+                return null;
+            else
+                return sector_surface;
+            end if;
         end if;
     end;
 
     member function getOccupation return varchar
     is
-        nb number;
     begin
-        select count(distinct occupation)
-        into nb
-        from nf26p008.d_bdt_card
-        where card_id = self.card_id;
-        if nb > 1 then
+        if self.hasDuplicates() then
             return 'undefined';
         else
             return occupation;
@@ -83,13 +86,8 @@ is
 
     member function getHouse return varchar
     is
-        nb number;
     begin
-        select count(distinct house)
-        into nb
-        from nf26p008.d_bdt_card
-        where card_id = self.card_id;
-        if nb > 1 then
+        if self.hasDuplicates() then
             return 'undefined';
         else
             return house;
@@ -121,34 +119,6 @@ is
     begin
         return 'N';
     end;
-    --member function isHighSpender return char
-    --is
-    --    tmpCardId varchar(255);
-    --    tmpChar char(1);
-    --begin
-    --    if self.hasDuplicates() then
-    --        return 'N';
-    --    elsif self.card_id is null or length(self.card_id) = 0 then
-    --        return 'N';
-    --    else
-    --        tmpChar := 'N';
-    --        for r in (
-    --                select card from (
-    --                    select count(*) as co, card
-    --                    from nf26p008.d_bdt_ventes
-    --                    group by card
-    --                    order by co desc
-    --                )
-    --                where rownum <= 11) loop
-    --            if r.card like self.card_id then
-    --                tmpChar := 'Y';
-    --                exit;
-    --            end if;
-    --        end loop;
-    --        return tmpChar;
-    --    end if;
-    --end;
-
 
     member function hasDuplicates return boolean
     is
@@ -156,8 +126,8 @@ is
     begin
         select count(*)
         into nb
-        from nf26p008.d_bdt_card
-        where card_id = self.card_id;
+        from nf26p008.d_bdt_card card
+        where card.card_id = self.card_id;
         if nb > 1 then
             return true;
         else

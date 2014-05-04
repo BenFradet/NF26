@@ -20,10 +20,10 @@ select
     card.house,
     house.stats
 from nf26p008.d_bde_card card
-join nf26p008.d_bde_cities city on card.address = city.city
-join nf26p008.d_bde_sectors sector on card.sector = sector.sector
-join nf26p008.d_bde_house house on card.house = house.house
-join nf26p008.d_bde_occupation occup on card.occupation = occup.occupation;
+left join nf26p008.d_bde_cities city on card.address = city.city
+left join nf26p008.d_bde_sectors sector on card.sector = sector.sector
+left join nf26p008.d_bde_house house on card.house = house.house
+left join nf26p008.d_bde_occupation occup on card.occupation = occup.occupation;
 commit;
 
 insert into nf26p008.d_bdt_clerk (
@@ -44,9 +44,9 @@ select
     store.sector,
     sector.surface
 from nf26p008.d_bde_clerk clerk
-join nf26p008.d_bde_store store on clerk.store = store.store_id
-join nf26p008.d_bde_cities city on store.city = city.city
-join nf26p008.d_bde_sectors sector on store.sector = sector.sector;
+left join nf26p008.d_bde_store store on clerk.store = store.store_id
+left join nf26p008.d_bde_cities city on store.city = city.city
+left join nf26p008.d_bde_sectors sector on store.sector = sector.sector;
 commit;
 
 insert into nf26p008.d_bdt_date (
@@ -57,7 +57,7 @@ select
     v.dat,
     t.temperature
 from nf26p008.d_bde_dune_corp v
-join nf26p008.d_bde_temperature t
+left join nf26p008.d_bde_temperature t
 on t.dat = v.dat;
 commit;
 
@@ -79,8 +79,8 @@ select
     jolitre.sector,
     sector.surface
 from nf26p008.d_bde_jolitres jolitre
-join nf26p008.d_bde_cities city on jolitre.city_prod = city .city
-join nf26p008.d_bde_sectors sector on jolitre.sector = sector.sector;
+left join nf26p008.d_bde_cities city on jolitre.city_prod = city .city
+left join nf26p008.d_bde_sectors sector on jolitre.sector = sector.sector;
 commit;
 
 insert into nf26p008.d_bdt_ventes (

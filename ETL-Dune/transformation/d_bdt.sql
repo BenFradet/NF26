@@ -8,3 +8,4 @@
 @d_bdt_date_body.sql
 @d_bdt_jolitre.sql
 @d_bdt_jolitre_body.sql
+@d_bdt_seg_functions.sql

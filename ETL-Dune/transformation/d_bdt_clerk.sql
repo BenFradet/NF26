@@ -7,7 +7,8 @@ create or replace type nf26p008.d_bdt_clerk_type as object (
     store_sector varchar(255),
     store_sector_surface number,
     member function getClerkId return number,
-    member function getExperience return varchar,
+    member function getExperience (minimum in number, maximum in number)
+        return varchar,
     member function getStore return varchar,
     member function getStoreCity return varchar,
     member function getStoreCityPop return number,

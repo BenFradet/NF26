@@ -38,6 +38,17 @@ alter table nf26p008.d_dw_jolitre disable constraint
 
 drop index d_dw_jolitre_idx_jolitre_id;
 
+--local variables
+def minExperience = nf26p008.minExperience();
+def maxExperience = nf26p008.maxExperience();
+
+def minTemperature = nf26p008.minTemperature();
+def maxTemperature = nf26p008.maxTemperature();
+
+def minQuality = nf26p008.minQuality();
+def maxQuality = nf26p008.maxQuality();
+
+--inserts
 insert into nf26p008.d_dw_ventes (
     ticket_id,
     dat,
@@ -67,7 +78,7 @@ insert into nf26p008.d_dw_card (
     fremen,
     high_spender
 )
-select
+select distinct
     ca.getCardId(),
     ca.getCity(),
     ca.getCityPop(),
@@ -93,9 +104,9 @@ insert into nf26p008.d_dw_clerk (
     best_clerk,
     best_store
 )
-select
+select distinct
     cl.getClerkId(),
-    cl.getExperience(),
+    cl.getExperience(minExperience, maxExperience),
     cl.getStore(),
     cl.getStoreCity(),
     cl.getStoreCityPop(),
@@ -122,7 +133,7 @@ select distinct
     d.getWoy(),
     d.getMoy(),
     d.getYear(),
-    d.getTemperature()
+    d.getTemperature(minTemperature, maxTemperature)
 from nf26p008.d_bdt_date d
 where d.getDate() is not null;
 commit;
@@ -137,9 +148,9 @@ insert into nf26p008.d_dw_jolitre (
     sector_surface,
     best_seller
 )
-select
+select distinct
     j.getJolitreId(),
-    j.getQuality(),
+    j.getQuality(minQuality, maxQuality),
     j.getSize(),
     j.getCity(),
     j.getCityPop(),
@@ -155,7 +166,7 @@ set high_spender = 'Y'
 where card_id in (
     select card from (
         select count(*) as co, card
-        from nf26p008.d_bdt_ventes
+        from nf26p008.d_dw_ventes
         group by card
         order by co desc
     )
@@ -167,7 +178,7 @@ set best_seller = 'Y'
 where jolitre_id in (
     select jolitre from (
         select count(*) as co, jolitre
-        from nf26p008.d_bdt_ventes
+        from nf26p008.d_dw_ventes
         group by jolitre
         order by co desc
     )
@@ -179,7 +190,7 @@ set best_clerk = 'Y'
 where clerk_id in (
     select clerk from (
         select count(*) as co, clerk
-        from nf26p008.d_bdt_ventes
+        from nf26p008.d_dw_ventes
         group by clerk
         order by co desc
     )
@@ -190,15 +201,18 @@ update nf26p008.d_dw_clerk
 set best_store = 'Y'
 where store in (
     select store from (
-        select count(*) as co, store
-        from nf26p008.d_bdt_ventes
-        group by store
+        select count(*) as co, clerk.store
+        from nf26p008.d_dw_ventes ventes
+        left join nf26p008.d_dw_clerk clerk on clerk.clerk_id = ventes.clerk
+        group by clerk.store
         order by co desc
     )
-    where rownum <= 10
+    where store is not null and store not like 'undefined' and rownum <= 10
 );
 
 --card
+create unique index d_dw_card_idx_card_id on nf26p008.d_dw_card(card_id);
+
 alter table nf26p008.d_dw_card enable constraint d_dw_card_pk_card_id
     exceptions into nf26p008.d_exceptions;
 alter table nf26p008.d_dw_card enable constraint d_dw_card_cstr_fremen
@@ -206,9 +220,9 @@ alter table nf26p008.d_dw_card enable constraint d_dw_card_cstr_fremen
 alter table nf26p008.d_dw_card enable constraint d_dw_card_cstr_high_spender
     exceptions into nf26p008.d_exceptions;
 
-create unique index d_dw_card_idx_card_id on nf26p008.d_dw_card(card_id);
-
 --clerk
+create unique index d_dw_clerk_idx_clerk_id on nf26p008.d_dw_clerk(clerk_id);
+
 alter table nf26p008.d_dw_clerk enable constraint d_dw_clerk_pk_clerk_id
     exceptions into nf26p008.d_exceptions;
 alter table nf26p008.d_dw_clerk enable constraint d_dw_clerk_cstr_best_clerk
@@ -218,17 +232,18 @@ alter table nf26p008.d_dw_clerk enable constraint d_dw_clerk_cstr_best_store
 alter table nf26p008.d_dw_clerk enable constraint d_dw_clerk_cstr_experience
     exceptions into nf26p008.d_exceptions;
 
-create unique index d_dw_clerk_idx_clerk_id on nf26p008.d_dw_clerk(clerk_id);
-
 --date
+create unique index d_dw_date_idx_dat on nf26p008.d_dw_date(dat);
+
 alter table nf26p008.d_dw_date enable constraint d_dw_date_pk_dat
     exceptions into nf26p008.d_exceptions;
 alter table nf26p008.d_dw_date enable constraint d_dw_date_cstr_temp
     exceptions into nf26p008.d_exceptions;
 
-create unique index d_dw_date_idx_dat on nf26p008.d_dw_date(dat);
-
 --jolitre
+create unique index d_dw_jolitre_idx_jolitre_id 
+    on nf26p008.d_dw_jolitre(jolitre_id);
+
 alter table nf26p008.d_dw_jolitre enable constraint d_dw_jolitre_pk_jolitre_id
     exceptions into nf26p008.d_exceptions;
 alter table nf26p008.d_dw_jolitre enable constraint d_dw_jolitre_cstr_quality
@@ -236,10 +251,12 @@ alter table nf26p008.d_dw_jolitre enable constraint d_dw_jolitre_cstr_quality
 alter table nf26p008.d_dw_jolitre enable constraint
     d_dw_jolitre_cstr_best_seller exceptions into nf26p008.d_exceptions;
 
-create unique index d_dw_jolitre_idx_jolitre_id 
-    on nf26p008.d_dw_jolitre(jolitre_id);
-
 --ventes
+create index d_dw_ventes_idx_dat on nf26p008.d_dw_ventes(dat);
+create index d_dw_ventes_idx_jolitre on nf26p008.d_dw_ventes(jolitre);
+create index d_dw_ventes_idx_clerk on nf26p008.d_dw_ventes(clerk);
+create index d_dw_ventes_idx_card on nf26p008.d_dw_ventes(card);
+
 alter table nf26p008.d_dw_ventes enable constraint d_dw_ventes_fk_date
     exceptions into nf26p008.d_exceptions;
 alter table nf26p008.d_dw_ventes enable constraint d_dw_ventes_fk_jolitre
@@ -248,11 +265,6 @@ alter table nf26p008.d_dw_ventes enable constraint d_dw_ventes_fk_clerk
     exceptions into nf26p008.d_exceptions;
 alter table nf26p008.d_dw_ventes enable constraint d_dw_ventes_fk_card
     exceptions into nf26p008.d_exceptions;
-
-create index d_dw_ventes_idx_dat on nf26p008.d_dw_ventes(dat);
-create index d_dw_ventes_idx_jolitre on nf26p008.d_dw_ventes(jolitre);
-create index d_dw_ventes_idx_clerk on nf26p008.d_dw_ventes(clerk);
-create index d_dw_ventes_idx_card on nf26p008.d_dw_ventes(card);
 
 --test
 select count(*) from nf26p008.d_exceptions;
