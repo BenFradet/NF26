@@ -38,16 +38,6 @@ alter table nf26p008.d_dw_jolitre disable constraint
 
 drop index d_dw_jolitre_idx_jolitre_id;
 
---local variables
-def minExperience = nf26p008.minExperience();
-def maxExperience = nf26p008.maxExperience();
-
-def minTemperature = nf26p008.minTemperature();
-def maxTemperature = nf26p008.maxTemperature();
-
-def minQuality = nf26p008.minQuality();
-def maxQuality = nf26p008.maxQuality();
-
 --inserts
 insert into nf26p008.d_dw_ventes (
     ticket_id,
@@ -93,72 +83,104 @@ select distinct
 from nf26p008.d_bdt_card ca;
 commit;
 
-insert into nf26p008.d_dw_clerk (
-    clerk_id,
-    experience,
-    store,
-    store_city,
-    store_city_pop,
-    store_sector,
-    store_sector_surface,
-    best_clerk,
-    best_store
-)
-select distinct
-    cl.getClerkId(),
-    cl.getExperience(minExperience, maxExperience),
-    cl.getStore(),
-    cl.getStoreCity(),
-    cl.getStoreCityPop(),
-    cl.getStoreSector(),
-    cl.getStoreSectorSurface(),
-    cl.isBestClerk(),
-    cl.isBestStore()
-from nf26p008.d_bdt_clerk cl;
-commit;
+declare
+    minExp number;
+    maxExp number;
+begin    
+    minExp := nf26p008.minExperience();
+    maxExp := nf26p008.maxExperience();
+    insert into nf26p008.d_dw_clerk (
+        clerk_id,
+        experience,
+        store,
+        store_city,
+        store_city_pop,
+        store_sector,
+        store_sector_surface,
+        best_clerk,
+        best_store
+    )
+    select distinct
+        cl.getClerkId(),
+        cl.getExperience(minExp, maxExp),
+        cl.getStore(),
+        cl.getStoreCity(),
+        cl.getStoreCityPop(),
+        cl.getStoreSector(),
+        cl.getStoreSectorSurface(),
+        cl.isBestClerk(),
+        cl.isBestStore()
+    from nf26p008.d_bdt_clerk cl;
+    commit;
+end;
+/
 
-insert into nf26p008.d_dw_date (
-    dat,
-    dow,
-    doy,
-    woy,
-    moy,
-    year,
-    temperature
-)
-select distinct
-    d.getDate(),
-    d.getDow(),
-    d.getDoy(),
-    d.getWoy(),
-    d.getMoy(),
-    d.getYear(),
-    d.getTemperature(minTemperature, maxTemperature)
-from nf26p008.d_bdt_date d
-where d.getDate() is not null;
-commit;
+declare
+    minTemp number;
+    maxTemp number;
+begin
+    minTemp := nf26p008.minTemperature();
+    maxTemp := nf26p008.maxTemperature();
+    insert into nf26p008.d_dw_date (
+        dat,
+        dow,
+        doy,
+        woy,
+        moy,
+        year,
+        temperature
+    )
+    select distinct
+        d.getDate(),
+        d.getDow(),
+        d.getDoy(),
+        d.getWoy(),
+        d.getMoy(),
+        d.getYear(),
+        d.getTemperature(minTemp, maxTemp)
+    from nf26p008.d_bdt_date d
+    where d.getDate() is not null;
+    commit;
+end;
+/
 
-insert into nf26p008.d_dw_jolitre (
-    jolitre_id,
-    quality,
-    j_size,
-    city,
-    city_pop,
-    sector,
-    sector_surface,
-    best_seller
-)
-select distinct
-    j.getJolitreId(),
-    j.getQuality(minQuality, maxQuality),
-    j.getSize(),
-    j.getCity(),
-    j.getCityPop(),
-    j.getSector(),
-    j.getSectorSurface(),
-    j.isBestSeller()
-from nf26p008.d_bdt_jolitre j;
-commit;
+declare
+    minQlty number;
+    maxQlty number;
+begin
+    minQlty := nf26p008.minQuality();
+    maxQlty := nf26p008.maxQuality();
+    insert into nf26p008.d_dw_jolitre (
+        jolitre_id,
+        quality,
+        j_size,
+        city,
+        city_pop,
+        sector,
+        sector_surface,
+        best_seller
+    )
+    select distinct
+        j.getJolitreId(),
+        j.getQuality(minQlty, maxQlty),
+        j.getSize(),
+        j.getCity(),
+        j.getCityPop(),
+        j.getSector(),
+        j.getSectorSurface(),
+        j.isBestSeller()
+    from nf26p008.d_bdt_jolitre j;
+    commit;
+end;
+/
+
+--remove card which are not in the card table
+update nf26p008.d_dw_ventes
+set card = null
+where card not in (
+    select card_id
+    from nf26p008.d_dw_card
+);
 
 --agregated facts as attributes
 update nf26p008.d_dw_card

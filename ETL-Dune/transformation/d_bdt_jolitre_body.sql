@@ -3,7 +3,7 @@ is
     member function getJolitreId return varchar
     is
     begin
-        return jolitre_id;
+        return trim(jolitre_id);
     end;
 
     member function getQuality (minimum in number, maximum in number) 

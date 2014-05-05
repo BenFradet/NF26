@@ -1,5 +1,5 @@
-@d_dw_card.sql
-@d_dw_clerk.sql
-@d_dw_date.sql
-@d_dw_jolitre.sql
-@d_dw_ventes.sql
+@loading/d_dw_card.sql
+@loading/d_dw_clerk.sql
+@loading/d_dw_date.sql
+@loading/d_dw_jolitre.sql
+@loading/d_dw_ventes.sql

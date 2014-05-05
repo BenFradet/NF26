@@ -19,7 +19,7 @@ is
     member function getJolitre return varchar
     is
     begin
-        return jolitre;
+        return trim(jolitre);
     end;
 
     member function getClerk return number
@@ -31,7 +31,7 @@ is
     member function getCard return varchar
     is
     begin
-        return card;
+        return trim(card);
     end;
 
     member function toNumber (str in varchar) return number

@@ -15,6 +15,6 @@ alter table nf26p008.d_dw_jolitre add constraint d_dw_jolitre_pk_jolitre_id
     primary key (jolitre_id);
 
 alter table nf26p008.d_dw_jolitre add constraint d_dw_jolitre_cstr_quality
-    check (quality in ('undefined', 'good', 'medium', 'bad'));
+    check (quality in ('undefined', 'good', 'average', 'bad'));
 alter table nf26p008.d_dw_jolitre add constraint d_dw_jolitre_cstr_best_seller
     check (best_seller in ('Y', 'N'));

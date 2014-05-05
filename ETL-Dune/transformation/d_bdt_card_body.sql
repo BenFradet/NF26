@@ -3,7 +3,7 @@ is
     member function getCardId return varchar
     is
     begin
-        return card_id;
+        return trim(card_id);
     end;
 
     member function getCity return varchar
