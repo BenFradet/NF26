@@ -21,7 +21,9 @@ organization external (
 )
 reject limit 1;
 
+prompt 
 prompt premières lignes de d_bde_jolitres
 select * from nf26p008.d_bde_jolitres where rownum <= 10;
+prompt 
 prompt count de d_bde_jolitres
 select count(*) from nf26p008.d_bde_jolitres;

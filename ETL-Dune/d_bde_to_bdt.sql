@@ -100,18 +100,36 @@ from nf26p008.d_bde_dune_corp dune;
 commit;
 
 --exceptions if constraints
-
+prompt 
+prompt premieres lignes dans d_bdt_card
 select * from nf26p008.d_bdt_card where rownum <= 10;
+prompt 
+prompt count de d_bdt_card
 select count(*) from nf26p008.d_bdt_card;
 
+prompt 
+prompt premieres lignes de d_bdt_clerk
 select * from nf26p008.d_bdt_clerk where rownum <= 10;
+prompt prompt count de d_bdt_clerk
 select count(*) from nf26p008.d_bdt_clerk;
 
+prompt 
+prompt premieres lignes de d_bdt_date
 select * from nf26p008.d_bdt_date where rownum <= 10;
+prompt 
+prompt count de d_bdt_date
 select count(*) from nf26p008.d_bdt_date;
 
+prompt 
+prompt premieres lignes de d_bdt_jolitre
 select * from nf26p008.d_bdt_jolitre where rownum <= 10;
+prompt 
+prompt count de d_bdt_jolitre
 select count(*) from nf26p008.d_bdt_jolitre;
 
+prompt 
+prompt premieres lignes de d_bdt_ventes
 select * from nf26p008.d_bdt_ventes where rownum <= 10;
+prompt 
+prompt count de d_bdt_ventes
 select count(*) from nf26p008.d_bdt_ventes;

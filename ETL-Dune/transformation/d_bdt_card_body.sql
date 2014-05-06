@@ -20,7 +20,7 @@ is
     is
         nb number;
     begin
-        if self.getCity() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             select count(distinct card.city_pop)
@@ -49,7 +49,7 @@ is
     is
         nb number;
     begin
-        if self.getSector() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             select count(distinct card.sector_surface)
@@ -77,7 +77,7 @@ is
     member function getOccupationStat return number
     is
     begin
-        if self.getOccupation() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             return occupation_stat;
@@ -97,7 +97,7 @@ is
     member function getHouseStat return number
     is
     begin
-        if self.getHouse() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             return house_stat;

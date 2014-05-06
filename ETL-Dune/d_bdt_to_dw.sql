@@ -203,6 +203,8 @@ end;
 /
 
 --remove card which are not in the card table
+prompt
+prompt remove card which are not in the card table from the ventes table
 update nf26p008.d_dw_ventes
 set card = 'undefined'
 where card not in (
@@ -211,6 +213,8 @@ where card not in (
 ) and card is not null;
 
 --agregated facts as attributes
+prompt
+prompt calcul des attributs d agregation de faits
 update nf26p008.d_dw_card
 set high_spender = 'Y'
 where card_id in (
@@ -317,19 +321,41 @@ alter table nf26p008.d_dw_ventes enable constraint d_dw_ventes_fk_card
     exceptions into nf26p008.d_exceptions;
 
 --test
+prompt 
+prompt count de d_exceptions
 select count(*) from nf26p008.d_exceptions;
 
+prompt 
+prompt premieres lignes de d_dw_ventes
 select * from nf26p008.d_dw_ventes where rownum <= 10;
+prompt 
+prompt count de d_dw_ventes
 select count(*) from nf26p008.d_dw_ventes;
 
+prompt 
+prompt premieres lignes de d_dw_date
 select * from nf26p008.d_dw_date where rownum <= 10;
+prompt 
+prompt count de d_dw_date
 select count(*) from nf26p008.d_dw_date;
 
+prompt 
+prompt premieres lignes de d_dw_jolitre
 select * from nf26p008.d_dw_jolitre where rownum <= 10;
+prompt 
+prompt count de d_dw_jolitre
 select count(*) from nf26p008.d_dw_jolitre;
 
+prompt 
+prompt premieres lignes de d_dw_clerk
 select * from  nf26p008.d_dw_clerk where rownum <= 10;
+prompt 
+prompt count de d_dw_clerk
 select count(*) from nf26p008.d_dw_clerk;
 
+prompt 
+prompt premieres lignes de d_dw_card
 select * from nf26p008.d_dw_card where rownum <= 10;
+prompt 
+prompt count de d_dw_card
 select count(*) from nf26p008.d_dw_card;

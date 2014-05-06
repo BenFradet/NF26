@@ -18,7 +18,9 @@ organization external (
 )
 reject limit 1;
 
+prompt 
 prompt premières lignes de d_bde_sectors
 select * from nf26p008.d_bde_sectors where rownum <= 10;
+prompt 
 prompt count de d_bde_sectors
 select count(*) from nf26p008.d_bde_sectors;

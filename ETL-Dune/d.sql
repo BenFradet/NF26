@@ -1,4 +1,4 @@
-echo off
+set echo off
 
 prompt
 prompt ==========RAZ==========

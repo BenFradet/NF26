@@ -40,7 +40,8 @@ is
         return to_char(self.getDate(), 'yyyy');
     end;
 
-    member function getTemperature (minimum in number, maximum in number) return varchar
+    member function getTemperature (minimum in number, maximum in number) 
+        return varchar
     is
         diff number;
         temp number;

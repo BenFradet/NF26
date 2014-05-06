@@ -19,5 +19,9 @@ organization external (
 )
 reject limit 1;
 
+prompt 
+prompt premieres lignes dans d_bde_clerk
 select * from nf26p008.d_bde_clerk where rownum <= 10;
+prompt 
+prompt count de d_bde_clerk
 select count(*) from nf26p008.d_bde_clerk;

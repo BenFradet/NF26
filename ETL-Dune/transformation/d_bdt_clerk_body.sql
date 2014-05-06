@@ -51,7 +51,7 @@ is
     is
         nb number;
     begin
-        if self.getStoreCity() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             select count(distinct clerk.store_city_pop)
@@ -80,7 +80,7 @@ is
     is
         nb number;
     begin
-        if self.getStoreSector() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             select count(distinct clerk.store_sector_surface)

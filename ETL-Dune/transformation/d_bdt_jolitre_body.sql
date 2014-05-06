@@ -51,7 +51,7 @@ is
     is
         nb number;
     begin
-        if self.getCity() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             select count(distinct jolitre.city_pop)
@@ -80,7 +80,7 @@ is
     is
         nb number;
     begin
-        if self.getSector() like 'undefined' then
+        if self.hasDuplicates() then
             return null;
         else
             select count(distinct jolitre.sector_surface)

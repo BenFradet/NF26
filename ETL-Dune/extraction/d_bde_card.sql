@@ -21,7 +21,9 @@ organization external (
 )
 reject limit 1;
 
+prompt 
 prompt premières lignes de d_bde_card
 select * from nf26p008.d_bde_card where rownum <= 10;
+prompt 
 prompt count d_bde_card
 select count(*) from nf26p008.d_bde_card;
