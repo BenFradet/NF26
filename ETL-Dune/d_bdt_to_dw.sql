@@ -83,6 +83,34 @@ select distinct
 from nf26p008.d_bdt_card ca;
 commit;
 
+insert into nf26p008.d_dw_card (
+    card_id,
+    city,
+    city_pop,
+    sector,
+    sector_surface,
+    occupation,
+    occupation_stat,
+    house,
+    house_stat,
+    fremen,
+    high_spender
+)
+values (
+    'undefined',
+    'undefined',
+    null,
+    'undefined',
+    null,
+    'undefined',
+    null,
+    'undefined',
+    null,
+    'N',
+    'N'
+);
+commit;
+
 declare
     minExp number;
     maxExp number;
@@ -176,11 +204,11 @@ end;
 
 --remove card which are not in the card table
 update nf26p008.d_dw_ventes
-set card = null
+set card = 'undefined'
 where card not in (
     select card_id
     from nf26p008.d_dw_card
-);
+) and card is not null;
 
 --agregated facts as attributes
 update nf26p008.d_dw_card
