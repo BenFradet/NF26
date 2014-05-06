@@ -19,5 +19,7 @@ organization external (
 )
 reject limit 1;
 
+prompt premières lignes de d_bde_cities
 select * from nf26p008.d_bde_cities where rownum <= 10;
+prompt count de d_bde_cities
 select count(*) from nf26p008.d_bde_cities;

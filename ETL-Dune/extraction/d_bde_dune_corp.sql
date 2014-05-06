@@ -21,5 +21,7 @@ organization external (
 )
 reject limit 1;
 
+prompt premières lignes de d_bde_dune_corp
 select * from nf26p008.d_bde_dune_corp where rownum <= 10;
+prompt count de d_bde_dune_corp
 select count(*) from nf26p008.d_bde_dune_corp;
