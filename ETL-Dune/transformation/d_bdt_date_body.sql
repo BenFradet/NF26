@@ -48,8 +48,6 @@ is
     begin
         if self.toNumber(self.temperature) is null then
             return 'undefined';
-        elsif self.hasDuplicates() then
-            return 'undefined';
         else
             diff := maximum - minimum;
             temp := self.toNumber(self.temperature);
